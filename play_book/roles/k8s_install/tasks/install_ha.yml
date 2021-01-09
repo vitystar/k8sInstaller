@@ -1,0 +1,6 @@
+---
+- name: Install HA Package
+  yum: 
+    name:
+      - keepalived
+      - haproxy

@@ -1,0 +1,10 @@
+---
+- hosts: all
+  gather_facts: no
+  remote_user: root
+  vars_files: 
+    - ../kubs.yaml
+  roles:
+    - sys_preconfig
+    - kernel_config
+    - k8s_install

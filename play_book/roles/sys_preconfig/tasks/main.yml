@@ -1,0 +1,5 @@
+---
+- name: Check Connection
+  ping: 
+- include: preconfig.yml
+- include: install_package.yml

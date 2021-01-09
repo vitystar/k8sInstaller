@@ -1,0 +1,7 @@
+---
+- name: Check Connection
+  ping: 
+- include: update_kernel.yml
+- include: install_ipvs.yml
+- include: load_ipvs.yml
+- include: config_kernel.yml

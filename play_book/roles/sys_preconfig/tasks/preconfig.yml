@@ -1,0 +1,66 @@
+---
+- name: Set Host File
+  copy: 
+    src: /etc/hosts
+    dest: /etc/hosts 
+    backup: yes 
+    owner: root 
+    group: root 
+    mode: 644
+- name: Close Fallware
+  service: 
+    name: firewalld 
+    state: stopped 
+    enabled: no
+- name: Close NetworkManager
+  service: 
+    name: NetworkManager 
+    state: stopped 
+    enabled: no
+  ignore_errors: yes
+- name: Close dnsmasq
+  service: 
+    name: dnsmasq 
+    state: stopped 
+    enabled: no
+  ignore_errors: yes
+- name: Close Selinux
+  shell: setenforce 0
+- name: Config Selinux
+  lineinfile: 
+    dest: /etc/sysconfig/selinux 
+    regexp: '^SELINUX: (.*)' 
+    line: 'SELINUX: disabled'
+- name: Close swap
+  shell: swapoff -a && sysctl -w vm.swappiness=0
+- name: Config swap
+  replace: 
+    path: /etc/fstab
+    regexp: '/dev/mapper/centos-swap/#' 
+    replace: '/dev/mapper/centos-swap'
+    backup: yes
+- name: Set NTP File 
+  file: 
+    path: /etc/localtime
+    state: link
+    src: /usr/share/zoneinfo/Asia/Shanghai
+    force: yes
+- name: Set NTP Timezone
+  shell: echo "Asia/Shanghai">/etc/timezone
+- name: Install NTP
+  yum: 
+    name: ntp
+- name: Sync Time
+  shell: ntpdate time2.aliyun.com
+- name: Set Auto Sync
+  shell: echo "ntpdate time2.aliyun.com" >> /etc/rc.local
+- name: Set Limit
+  shell: ulimit -SHn 65535
+- name: Copy repo File
+  copy: 
+    src: repo/ 
+    dest: /etc/yum.repos.d/ 
+    backup: yes 
+    owner: root 
+    group: root
+    mode: 644

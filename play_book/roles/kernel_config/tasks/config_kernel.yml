@@ -1,0 +1,7 @@
+---
+- name: Copy k8s Kernel config
+  copy: 
+    src: K8S.conf 
+    dest: /etc/sysctl.d/K8S.conf
+- name: Apply config
+  shell: sysctl --system

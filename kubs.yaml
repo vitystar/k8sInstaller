@@ -1,0 +1,17 @@
+Master:
+  - hostname: k8s-master01
+    ip: 192.168.80.81
+    root_password: 123456
+  - hostname: k8s-master02
+    ip: 192.168.80.82
+    root_password: 123456
+  - hostname: k8s-master03
+    ip: 192.168.80.83
+    root_password: 123456
+Node: 
+  - hostname: k8s-node01
+    ip: 192.168.80.84
+    root_password: 123456
+  - hostname: k8s-node02
+    ip: 192.168.80.85
+    root_password: 123456

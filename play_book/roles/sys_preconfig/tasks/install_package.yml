@@ -1,0 +1,9 @@
+---
+- name: Install package
+  yum: 
+    name:
+      - wget
+      - jq
+      - psmisc
+      - vim
+      - net-tools

@@ -1,0 +1,11 @@
+---
+- name: Copy Kernel Package
+  copy: 
+    src: kernel/
+    dest: /root/
+- name: Update Kernel
+  shell: yum localinstall -y /root/kernel-ml*
+- name: Change Grub
+  shell: grub2-set-default 0 && grub2-mkconfig -o /etc/grub2.cfg
+- name: Change grubby
+  shell: grubby --args="user_namespace.enable=1" --update-kernel="$(grubby --default-kernel)"

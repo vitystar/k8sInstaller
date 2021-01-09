@@ -1,0 +1,30 @@
+---
+- name: Load ipvs
+  shell: modprobe -- ip_vs
+- name: Load ipvs_rr
+  shell: modprobe -- ip_vs_rr
+- name: Load ip_vs_wrr
+  shell: modprobe -- ip_vs_wrr
+- name: Load ip_vs_sh
+  shell: modprobe -- ip_vs_sh
+- name: Load nf_conntrack_ipv4
+  shell: modprobe -- nf_conntrack_ipv4
+- name: Load ip_tables
+  shell: modprobe -- ip_tables
+- name: Load ip_set
+  shell: modprobe -- ip_set
+- name: Load xt_set
+  shell: modprobe -- xt_set
+- name: Load ipt_rpfilter
+  shell: modprobe -- ipt_rpfilter
+- name: Load ipt_REJECT
+  shell: modprobe -- ipt_REJECT
+- name: Load ipip
+  shell: modprobe -- ipip
+- name: Copy ipvs modules
+  copy: 
+    src: k8s.modules
+    dest: /etc/sysconfig/modules/k8s.modules
+    owner: root
+    group: root 
+    mode: 644

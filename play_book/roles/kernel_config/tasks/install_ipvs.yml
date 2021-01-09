@@ -1,0 +1,16 @@
+---
+- name: Install ipvsadm
+  yum: 
+    name: ipvsadm
+- name: Install ipset
+  yum: 
+    name: ipset
+- name: Install sysstat
+  yum: 
+    name: sysstat
+- name: Install conntrack
+  yum: 
+    name: conntrack
+- name: Install libseccomp
+  yum: 
+    name: libseccomp

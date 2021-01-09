@@ -1,0 +1,18 @@
+---
+- name: Install Yum-utils
+  yum: 
+    name: yum-utils
+- name: Install device-mapper-persistent-data
+  yum: 
+    name: device-mapper-persistent-data
+- name: Install lvm2
+  yum: 
+    name: lvm2
+- name: Install docker-ce-17.09.1.ce-1.el7.centos
+  yum: 
+    name: docker-ce-17.09.1.ce-1.el7.centos
+- name: Enable docker
+  service: 
+    name: docker
+    state: started
+    enable: yes

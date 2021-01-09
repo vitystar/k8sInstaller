@@ -1,0 +1,17 @@
+---
+- name: Install Kubelet
+  yum: 
+    name: 
+      - kubeadm-1-13-2-0.x86_64
+      - kubectl-1.13.2-0.x68_64
+      - kubelet-1.13.2-0.x86_64
+- name: Get Docker Cgroup
+  shell: docker info 2>/dev/null| grep 'Cgroup' | cut -d ' ' -f4
+  register: cgroup_cmd
+  ignore_errors: True
+- name: Set Cgroup Variable
+  set_fact: cgroup="{{cgroup_cmd.stdout}}"
+- name: Config Kubelet
+  template: 
+    src: kubelet.j2
+    dest: /etc/sysconfig/kubelet

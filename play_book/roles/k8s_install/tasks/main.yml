@@ -1,0 +1,5 @@
+---
+- name: Check Connection
+  ping: 
+- include: install_docker.yml
+- include: install_kubelet.yml
